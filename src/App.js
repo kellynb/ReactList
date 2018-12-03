@@ -1,24 +1,48 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+// import AddName from './SecondComponent';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isOn: true,
+      inputs: [],
+      value: ''
+    }
+  }
+
+  handleChange = (event) => {
+    this.setState({value: event.target.value});
+  }
+
+  submitChange = event => {
+    this.setState({
+      inputs: [...this.state.inputs, this.state.value],
+      value: ''
+    });
+    event.preventDefault();
+  }
+
+  addList = () => {
+      const newItem = this.state.inputs.map((item) => {
+         return <li>{item}</li>
+      })
+      return newItem;
+  }
+
   render() {
     return (
+      console.log(this.state.isOn, 'Howdy'),
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+        <form onSubmit={this.submitChange}>
+          <input value={this.state.value} onChange= {this.handleChange}/>
+          <button>Submit</button>
+        </form>
+        <ul>
+            <this.addList />
+       </ul>
         </header>
       </div>
     );
