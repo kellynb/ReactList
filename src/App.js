@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-// import AddName from './SecondComponent';
+
 
 class App extends Component {
   constructor(props) {
@@ -33,7 +33,6 @@ class App extends Component {
 
   render() {
     return (
-      console.log(this.state.isOn, 'Howdy'),
       <div className="App">
         <header className="App-header">
         <form onSubmit={this.submitChange}>
